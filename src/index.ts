@@ -13,6 +13,21 @@ import ajvFormats from 'ajv-formats';
 
 dotenv.config();
 
+/**
+ * The entry point to the application.
+ * 
+ * @author Oscar I. Hernandez V.
+ * 
+ * @description
+ * 
+ * This Class bootstraps the HTTP server, configuring Fastify with the env vars or the default AppConfig.
+ * 
+ * @interface HttpErrorHandler
+ * @extends Error
+ * 
+ * @property {number} [statusCode] - HTTP status code (default: 500 if not specified)
+ * @property {string} message - Human-readable error description (required)
+ */
 export class AppServer {
   private readonly fastify: FastifyInstance;
   private readonly port: number;
@@ -50,6 +65,7 @@ export class AppServer {
     }
   }
 
+  //TODO: Figure out how to handle Swagger enablement due jest not works with Swagger
   private shouldEnableSwagger(): boolean {
     //return this.environment !== 'production';
     return false;

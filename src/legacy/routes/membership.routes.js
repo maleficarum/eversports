@@ -18,10 +18,12 @@ router.post("/", (req, res) => {
     return res.status(400).json({ message: "negativeRecurringPrice" });
   }
 
+  //This rule has to be validated in a custom validator
   if (req.body.recurringPrice > 100 && req.body.paymentMethod === 'cash') {
     return res.status(400).json({ message: "cashPriceBelow100" });
   }
 
+  //This rule has to be validated in a custom validator
   if (req.body.billingInterval === 'monthly') {
     if (req.body.billingPeriods > 12) {
       return res.status(400).json({ message: "billingPeriodsMoreThan12Months" });
