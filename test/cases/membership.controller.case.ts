@@ -2,17 +2,17 @@ import { bootstrap } from 'fastify-decorators';
 import { FastifyInstance } from 'fastify';
 import supertest from 'supertest';
 import { resolve } from 'path';
-import { AppServer } from '../../src/index';
+import { FastifyServer } from '../../src/index';
 
 export const membershipControllerTestCase = () => {
-  let appServer: AppServer;
+  let appServer: FastifyServer;
   let fastify: FastifyInstance;
 
   describe("Membership controller tests", () => {
 
     beforeAll(async () => {
 
-      appServer = new AppServer();
+      appServer = new FastifyServer();
       fastify = appServer['fastify'];
 
       // Explicitly wait for route registration
@@ -20,6 +20,8 @@ export const membershipControllerTestCase = () => {
         directory: resolve(__dirname, '../../src/modern/routes'),
         mask: /\.routes\./
       });
+
+      appServer.start();
 
       await fastify.ready();
     });

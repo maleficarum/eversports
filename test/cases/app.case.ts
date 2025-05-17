@@ -1,15 +1,15 @@
-import { AppServer } from '../../src/index';
+import { FastifyServer } from '../../src/index';
 import { bootstrap } from 'fastify-decorators';
 import { resolve } from 'path';
 import { FastifyInstance } from 'fastify';
 import supertest from 'supertest';
 
 export const appTest = () => {
-  let appServer: AppServer;
+  let appServer: FastifyServer;
   let fastify: FastifyInstance;
 
   beforeAll(async () => {
-    appServer = new AppServer();
+    appServer = new FastifyServer();
     fastify = appServer['fastify'];
 
     // Explicitly wait for route registration
@@ -17,6 +17,8 @@ export const appTest = () => {
       directory: resolve(__dirname, '../../src/modern/routes'),
       mask: /\.routes\./
     });
+
+    appServer.start();
 
     await fastify.ready();
   });
