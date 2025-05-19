@@ -17,7 +17,6 @@ import { BunyanLoggerFactory } from "../utils/factory/impl/BunyanLoggerFactory";
  */
 export class MembershipRepository implements IMembershipRepository {
 
-    private readonly MODULE_NAME = 'MembershipRepository';
     private MONGO_DB_URI: string;
     private connection!: Mongoose;
     private connectionOptions = {
@@ -28,16 +27,13 @@ export class MembershipRepository implements IMembershipRepository {
     };
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    private logger: any = BunyanLoggerFactory.getInstance().createLogger({
-        name: this.MODULE_NAME
-    });
+    private logger: any = BunyanLoggerFactory.getInstance().createLogger({ name: 'MembershipRepository' });
 
     constructor() {
         this.MONGO_DB_URI = process.env.MONGO_CONNECTION_STRING || '';
         if (!this.MONGO_DB_URI) {
             throw new Error('MongoDB connection string is not configured');
         }
-        this.connect();
     }
 
     async connect() {
@@ -99,10 +95,13 @@ export class MembershipRepository implements IMembershipRepository {
                 MembershipSchema.find({}, { _id: 0 }).lean(),
                 MembershipPeriodSchema.find({}, { _id: 0 }).lean()
             ]);
-
+            
             return memberships.map(membership => ({
                 membership,
-                periods: periods.filter(period => period.membership === membership.id)
+                periods: periods.filter(period => {
+                    //console.log(membership.id + " --- " + period.membership);
+                    return period.membership === membership.id
+                })
             }));
         } catch (error) {
             this.logger.error("Failed to retrieve memberships", error);

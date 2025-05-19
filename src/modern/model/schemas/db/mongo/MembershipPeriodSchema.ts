@@ -20,7 +20,16 @@ export const membershipPeriodSchema = new Schema<MembershipPeriod>({
   end: { type: Date, required: true },
   state: { type: String, required: true }
 }, {
-  timestamps: true
+  timestamps: true,
+  versionKey: false
+});
+
+membershipPeriodSchema.set('toObject', {
+  transform: function (doc, ret) {
+    ret.id = ret._id
+    delete ret._id
+    delete ret.__v
+  }
 });
 
 export const MembershipPeriodSchema = mongoose.model('MembershipPeriod', membershipPeriodSchema);
