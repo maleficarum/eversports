@@ -1,0 +1,9 @@
+[submodule "stack/modules/terraform-aws-container"]
+	path = stack/modules/terraform-aws-container
+	url = git@github.com:maleficarum/terraform-aws-container.git
+[submodule "stack/modules/terraform-aws-api-gateway"]
+	path = stack/modules/terraform-aws-api-gateway
+	url = git@github.com:maleficarum/terraform-aws-api-gateway.git
+[submodule "stack/modules/terraform-aws-network"]
+	path = stack/modules/terraform-aws-network
+	url = git@github.com:maleficarum/terraform-aws-network.git

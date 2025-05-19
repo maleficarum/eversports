@@ -1,6 +1,27 @@
 # Log file
 *.log
+
+# Compiled assets
 dist
+
+# env files
 .env
+
+#modules for application and its dependency lock
 node_modules
 package-lock.json
+
+# Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+**/.terragrunt*
+
+.terraform.lock.hcl
+
+
+# Ignore transient lock info files created by terraform apply
+.terraform.tfstate.lock.info
