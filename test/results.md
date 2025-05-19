@@ -3,16 +3,16 @@
 
 | :clock10: Start time | :hourglass: Duration |
 | --- | ---: |
-|18/05/2025, 10:15:26 pm|1.38 s|
+|19/05/2025, 2:02:16 am|1.257 s|
 
 | | :white_check_mark: Passed | :x: Failed | :construction: Todo | :white_circle: Total |
 | --- | ---: | ---: | ---:| ---: |
 |Test Suites|1|0|-|1|
 |Tests|5|0|0|5|
 
-## test/main.test.ts [[link](https://github.com/maleficarum/eversports/blob/e7c62f407fc9dced06518862a26367f570535bbb/test/main.test.ts)]
+## test/main.test.ts [[link](https://github.com/maleficarum/eversports/blob/2301420538749256af199b3614be4cdf7d96bdc0/test/main.test.ts)]
 
-5 passed, 0 failed, 0 todo, done in 1.309 s
+5 passed, 0 failed, 0 todo, done in 1.181 s
 
 - :white_check_mark: Test membership creation rules
   - :white_check_mark: Cash method validation
