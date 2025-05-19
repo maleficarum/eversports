@@ -9,8 +9,7 @@ export const membershipServiceTestCase = () => {
 
   let membershipService: MembershipService;
 
-  beforeAll(async () => {
-    process.env.MONGO_CONNECTION_STRING = 'dummy-url';    
+  beforeAll(async () => {   
     membershipService = new MembershipService();
     membershipService.membershipRepository = mockMembershipRepository;
   });

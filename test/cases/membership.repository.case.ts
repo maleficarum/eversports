@@ -18,7 +18,6 @@ export const membershipRepositoryTestCase = () => {
   beforeAll(async () => {
     allMemberships = loadTestJson(__dirname, 'allMemberships.json');
     allPeriods = loadTestJson(__dirname, 'allMembershipsPeriods.json');
-    process.env.MONGO_CONNECTION_STRING = 'dummy-url';
 
     membershipRepository = new MembershipRepository();
     const mockMembershipsQuery = {
