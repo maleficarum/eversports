@@ -26,8 +26,8 @@ export const membershipSchema = {
       id: expect.any(Number),
       uuid: expect.stringMatching(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i),
       membership: expect.any(Number),
-      start: expect.stringMatching(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/),
-      end: expect.stringMatching(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/),
+      start: expect.stringMatching(ISO_DATE_REGEX),
+      end: expect.stringMatching(ISO_DATE_REGEX),      
       state: expect.any(String)
     })
   ])

@@ -1,6 +1,7 @@
 name: Deploy application
 env:
   environment:  ${{ github.ref_name == 'main' && 'development' || github.event.pull_request.base.ref }}
+  MONGO_CONNECTION_STRING: ${{ secrets.MONGO_CONNECTION_STRING }}
 
 on:
     workflow_dispatch:
