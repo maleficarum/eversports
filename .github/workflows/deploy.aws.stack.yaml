@@ -32,9 +32,9 @@ jobs:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
             - name: 'Terragrunt Plan'
-              run: cd ${GITHUB_WORKSPACE}/environments/${environment} && terragrunt run-all plan
+              run: cd ${GITHUB_WORKSPACE}/../environments/${environment} && terragrunt run-all plan
               shell: bash     
                 
             - name: 'Terragrunt Apply'
-              run: cd ${GITHUB_WORKSPACE}/environments/${environment} && terragrunt run-all apply --terragrunt-non-interactive
+              run: cd ${GITHUB_WORKSPACE}/../environments/${environment} && terragrunt run-all apply --terragrunt-non-interactive
               shell: bash  
