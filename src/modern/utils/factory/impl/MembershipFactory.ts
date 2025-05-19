@@ -22,6 +22,7 @@ export class MembershipFactory implements IEntityFactory {
     private readonly DEFAULT_USER_ID = 2000;
     private readonly DEFAULT_ASSIGNED_BY = "Admin";
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private readonly logger: any = BunyanLoggerFactory.getInstance().createLogger({
         name: this.MODULE_NAME
     });
@@ -36,6 +37,7 @@ export class MembershipFactory implements IEntityFactory {
      * @param {Record<string, any>} membershipData - Raw membership data to be processed
      * @returns {object} The created membership entity with all required fields
      */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     createEntity(membership: Record<string, any>): object {
         this.membershipValidator.isValid(membership);
 

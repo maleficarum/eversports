@@ -9,7 +9,7 @@
     "build": "tsc",
     "serve": "node dist/index.js",
     "test": "jest --runInBand --detectOpenHandles",
-    "lint": "eslint ./src --ext .ts"
+    "lint": "eslint ./src --ext .ts "
   },
   "author": "",
   "license": "ISC",

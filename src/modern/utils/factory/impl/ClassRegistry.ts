@@ -12,12 +12,15 @@ import { MembershipPeriodFactory } from './MembershipPeriodFactory';
  */
 export class ClassRegistry {
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private static factoryRegistry = new Map<string, new (...args: any[]) => any>();
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     static register<T>(name: string, ctor: new (...args: any[]) => T) {
         this.factoryRegistry.set(name, ctor);
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     static create<T>(name: string, ...args: any[]): T {
         const ctor = this.factoryRegistry.get(name);
         if (!ctor) {
