@@ -38,5 +38,5 @@ jobs:
               shell: bash
 
             - name: 'Run tests'
-              run: npm run test && cat ./test.results.md >> $GITHUB_STEP_SUMMARY
+              run: npm run test && cat ./test/results.md >> $GITHUB_STEP_SUMMARY
               shell: bash
