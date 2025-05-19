@@ -34,9 +34,9 @@ jobs:
               shell: bash
               
             - name: 'Run ESLint'
-              run: npm run lint
+              run: npm run lint  >> $GITHUB_STEP_SUMMARY
               shell: bash
 
             - name: 'Run tests'
-              run: npm run test
+              run: npm run test  >> $GITHUB_STEP_SUMMARY
               shell: bash              
