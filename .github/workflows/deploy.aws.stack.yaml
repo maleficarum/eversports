@@ -23,7 +23,7 @@ jobs:
                 fetch-depth: 0         
 
             - name: Echo environment
-              run: echo "Using environment [ ${environment} ]"
+              run: echo "Using environment [ ${environment} ] as [ ${GITHUB_WORKSPACE} ]"
               shell: bash
 
             - name: 'Looking for GIT Leaks'
