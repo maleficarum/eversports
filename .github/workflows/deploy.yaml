@@ -24,7 +24,7 @@ jobs:
               run: echo "Using environment [ ${environment} ]"
               shell: bash
 
-            - name: Clean environment
+            - name: 'Clean environment'
               run: rm -rf /tmp/gitleaks*
               shell: bash              
 
