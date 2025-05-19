@@ -1,0 +1,40 @@
+name: On pull request
+env:
+  environment:  ${{ github.ref_name == 'main' && 'development' || github.ref_name }}
+  TF_VAR_environment_variables: ${{ secrets.TF_VAR_environment_variables }}
+
+on:
+    workflow_dispatch:
+    workflow_call:
+    push:
+      branches: 
+        - development
+
+jobs:
+    plan:
+        name: 'Review and Prepare'
+        runs-on: 'self-hosted'
+        environment: ${{ github.ref_name == 'main' && 'development' || github.ref_name }}
+    
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+              with:
+                fetch-depth: 0         
+
+            - name: Echo environment
+              run: echo "Using environment [ ${environment} ]"
+              shell: bash
+
+            - name: 'Looking for GIT Leaks'
+              uses: gitleaks/gitleaks-action@v2
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: 'Terragrunt Plan'
+              run: cd ${GITHUB_WORKSPACE}/environments/${environment} && terragrunt run-all plan
+              shell: bash     
+                
+            - name: 'Terragrunt Apply'
+              run: cd ${GITHUB_WORKSPACE}/environments/${environment} && terragrunt run-all apply --terragrunt-non-interactive
+              shell: bash  
