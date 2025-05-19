@@ -36,3 +36,7 @@ jobs:
             - name: 'Run ESLint'
               run: npm run lint
               shell: bash
+
+            - name: 'Run tests'
+              run: npm run test
+              shell: bash              
