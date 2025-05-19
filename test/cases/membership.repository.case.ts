@@ -16,6 +16,7 @@ export const membershipRepositoryTestCase = () => {
   let allPeriods: Array<object>[];
 
   beforeAll(async () => {
+    process.env.MONGO_CONNECTION_STRING = "dummy";
     allMemberships = loadTestJson(__dirname, 'allMemberships.json');
     allPeriods = loadTestJson(__dirname, 'allMembershipsPeriods.json');
 
@@ -43,12 +44,16 @@ export const membershipRepositoryTestCase = () => {
 
   it('Should get all memberships', async () => {
     const allExistingMemberships = await membershipRepository.getAllMemberships();
+
+    expect(allExistingMemberships.length).toBeGreaterThan(0);
+  });
+
+  it('Should return all memberships with valid schema structure', async () => {
+    const allExistingMemberships = await membershipRepository.getAllMemberships();
     const expectedShape = membershipSchema;
 
     allExistingMemberships.forEach(membership => {
       expect(membership).toEqual(expect.objectContaining(expectedShape));
     });
-
-  });
-
+  });  
 };
