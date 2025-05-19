@@ -29,6 +29,10 @@ jobs:
               env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+            - name: 'NPM deps installation'
+              run: npm install
+              shell: bash
+              
             - name: 'Run ESLint'
               run: npm run lint
               shell: bash
