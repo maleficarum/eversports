@@ -159,10 +159,9 @@ $ npm run build && npm run serve
 
 This project it's ready to be deployed on AWS according the next architecture : 
 
-//TODO ARQUITECTURA
+![Deployment architecture](./readme_resources/eversports.aws.png)
 
 The stack is located in the 'stack' 📂 directory organized as follows :
-
 
 ```bash
 📂 stack/
