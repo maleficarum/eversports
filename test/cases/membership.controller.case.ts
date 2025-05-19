@@ -2,7 +2,7 @@ import { bootstrap } from 'fastify-decorators';
 import { FastifyInstance } from 'fastify';
 import supertest from 'supertest';
 import { resolve } from 'path';
-import { FastifyServer } from '../../src/index';
+import { FastifyServer } from '../../src/modern/server/FastifyServer';
 
 export const membershipControllerTestCase = () => {
   let appServer: FastifyServer;
@@ -21,7 +21,7 @@ export const membershipControllerTestCase = () => {
         mask: /\.routes\./
       });
 
-      appServer.start();
+      //appServer.start();
 
       await fastify.ready();
     });

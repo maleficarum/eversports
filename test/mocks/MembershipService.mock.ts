@@ -2,7 +2,8 @@ import { MembershipService } from '../../src/modern/services/MembershipService';
 import { mockMembershipRepository } from '../mocks/MembershipRepository.mock'
 
 export const mockMembershipService: jest.Mocked<MembershipService> = {
-  fetchAllMemberships: jest.fn().mockReturnValue({}),
+  getAllMemberships: jest.fn().mockReturnValue({}),
+  createMembership: jest.fn().mockReturnValue({}),
   membershipRepository: mockMembershipRepository
 };
 

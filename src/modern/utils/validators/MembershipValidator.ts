@@ -19,7 +19,7 @@ export class MembershipValidator implements IValidator {
     * @readonly
     * @description Error message codes for different validation failures
     */    
-    private static readonly ERROR_MESSAGES = {
+    static readonly ERROR_MESSAGES = {
         CASH_PRICE_BELOW_MINIMUM: 'cashPriceBelow100',
         MONTHLY_BILLING_EXCEEDS_MAX: 'billingPeriodsMoreThan12Months',
         MONTHLY_BILLING_BELOW_MIN: 'billingPeriodsLessThan6Months',

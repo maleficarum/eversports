@@ -79,15 +79,14 @@ const allMembership = [
   }
 ];
 
-
 export const mockMembershipRepository = {
-  fetchAllMemberships: jest.fn().mockReturnValue(allMembership),
+  getAllMemberships: jest.fn().mockReturnValue(allMembership),
   connect: jest.fn(),
-  create: jest.fn()
-  // Add other repository methods as needed
+  createMembership: jest.fn()
 };
 
 export const resetMocks = () => {
-  mockMembershipRepository.fetchAllMemberships.mockReset();
-  // Reset other mocked methods here
+  mockMembershipRepository.connect.mockReset();
+  mockMembershipRepository.createMembership.mockReset();
+  mockMembershipRepository.getAllMemberships.mockReset();
 };

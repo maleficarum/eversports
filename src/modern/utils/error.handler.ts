@@ -16,7 +16,7 @@ import { FastifyRequest, FastifyReply } from "fastify";
  * @property {string} message - Human-readable error description (required)
  */
 
-interface HttpErrorHandler extends Error {
+export interface HttpErrorHandler extends Error {
   statusCode?: number;
   message: string;
 }

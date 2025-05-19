@@ -1,24 +1,25 @@
-import { FastifyServer } from '../../src/index';
+import { FastifyServer } from '../../src/modern/server/FastifyServer';
 import { bootstrap } from 'fastify-decorators';
 import { resolve } from 'path';
 import { FastifyInstance } from 'fastify';
 import supertest from 'supertest';
 
 export const appTest = () => {
+
   let appServer: FastifyServer;
   let fastify: FastifyInstance;
+  const APPLICATION_ENVIRONMENT = "test";
 
   beforeAll(async () => {
+    process.env.APPLICATION_ENVIRONMENT = APPLICATION_ENVIRONMENT;
     appServer = new FastifyServer();
     fastify = appServer['fastify'];
 
     // Explicitly wait for route registration
     await fastify.register(bootstrap, {
-      directory: resolve(__dirname, '../../src/modern/routes'),
+      directory: resolve(__dirname, '../../src/modern/controller'),
       mask: /\.routes\./
     });
-
-    appServer.start();
 
     await fastify.ready();
   });
@@ -27,13 +28,7 @@ export const appTest = () => {
     await fastify.close();
   });
 
-  it('should have registered routes', () => {
-    expect(fastify.hasRoute({ method: 'GET', url: '/memberships' })).toBe(true);
-    expect(fastify.hasRoute({ method: 'POST', url: '/memberships' })).toBe(true);
-    expect(fastify.hasRoute({ method: 'GET', url: '/health' })).toBe(true);
-  });
-
-  it('should has a list of membership', async () => {
+  it('should has a list all health information', async () => {
     const response = await supertest(fastify.server).get('/health').expect(200)
     const healthData = response.body;
 

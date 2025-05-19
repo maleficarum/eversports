@@ -71,7 +71,7 @@ export class FastifyServer {
 
   //TODO: Figure out how to handle Swagger enablement due jest not works with Swagger
   private shouldEnableSwagger(): boolean {
-    return this.environment !== 'production';
+    return !(this.environment == 'production' || this.environment == 'test');
     //return false;
   }
 
