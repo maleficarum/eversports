@@ -19,12 +19,12 @@ export class MembershipRepository implements IMembershipRepository {
 
     private MONGO_DB_URI: string;
     private connection!: Mongoose;
-    private connectionOptions = {
-        retryWrites: true,
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-        w: "majority" as const
-    };
+    private connectionOptions = {}
+    /*private connectionOptions = { 
+        serverApi: { 
+            version: "1" as const, strict: true, deprecationErrors: true 
+        } 
+    };*/
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private logger: any = BunyanLoggerFactory.getInstance().createLogger({ name: 'MembershipRepository' });
