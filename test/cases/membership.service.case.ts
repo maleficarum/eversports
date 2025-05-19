@@ -5,11 +5,12 @@ import { membershipSchema } from '../schemas/MembershipSchema';
 /**
  * This test case validates the listed memberships (if exists).
  */
-export const membershipserviceTestCase = () => {
+export const membershipServiceTestCase = () => {
 
   let membershipService: MembershipService;
 
   beforeAll(async () => {
+    process.env.MONGO_CONNECTION_STRING = 'dummy-url';    
     membershipService = new MembershipService();
     membershipService.membershipRepository = mockMembershipRepository;
   });
@@ -31,6 +32,5 @@ export const membershipserviceTestCase = () => {
     allExistingMemberships.forEach(membership => {
       expect(membership).toEqual(expect.objectContaining(expectedShape));
     });
-//TODO: Validar si falta el nombre o algo adicional que no valida el membershipvalidator
   });
 };

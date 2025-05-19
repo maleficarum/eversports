@@ -21,6 +21,7 @@ export class MembershipService {
 
     constructor() {
         this.membershipRepository = new MembershipRepository();
+        this.membershipRepository.connect();
     }
 
     /**
