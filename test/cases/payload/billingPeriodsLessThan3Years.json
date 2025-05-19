@@ -1,0 +1,8 @@
+{
+  "name": "oscar",
+  "recurringPrice": 100,
+  "validFrom": "2025-05-18T06:03:01.423Z",
+  "paymentMethod": "cash",
+  "billingInterval": "yearly",
+  "billingPeriods": 2
+}
