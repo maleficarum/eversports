@@ -21,11 +21,8 @@ export class MembershipFactory implements IEntityFactory {
     private readonly dateValidator: DateValidator = new DateValidator();
     private readonly DEFAULT_USER_ID = 2000;
     private readonly DEFAULT_ASSIGNED_BY = "Admin";
-
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    private readonly logger: any = BunyanLoggerFactory.getInstance().createLogger({
-        name: this.MODULE_NAME
-    });
+    private readonly logger: any = BunyanLoggerFactory.getInstance().createLogger({ name: this.MODULE_NAME });
 
     constructor() {
         this.membershipValidator = ClassRegistry.create<IValidator>("MembershipValidator", undefined);

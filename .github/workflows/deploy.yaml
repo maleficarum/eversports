@@ -24,6 +24,10 @@ jobs:
               run: echo "Using environment [ ${environment} ]"
               shell: bash
 
+            - name: Clean environment
+              run: rm -rf /tmp/gitleaks*
+              shell: bash              
+
             - name: 'Looking for GIT Leaks'
               uses: gitleaks/gitleaks-action@v2
               env:

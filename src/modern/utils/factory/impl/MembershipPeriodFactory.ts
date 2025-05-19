@@ -12,9 +12,7 @@ import { v4 as uuidv4 } from 'uuid';
 export class MembershipPeriodFactory implements IEntityFactory {
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    private readonly logger: any = BunyanLoggerFactory.getInstance().createLogger({
-        name: 'MembershipPeriodFactory'
-    });
+    private readonly logger: any = BunyanLoggerFactory.getInstance().createLogger({ name: 'MembershipPeriodFactory' });
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     createEntity(membership: Record<string, any>): object {

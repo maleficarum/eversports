@@ -67,7 +67,7 @@ export class MembershipRepository implements IMembershipRepository {
 
             // Create membership
             const createdMembership = await MembershipSchema.create(membership);
-            this.logger.debug("Created new membership", { membershipId: nextId });
+            this.logger.debug("Created new membership", { membershipId: nextId, createdMembership });
 
             // Create associated periods
             const periodCreationPromises = membershipPeriods.map(period => {

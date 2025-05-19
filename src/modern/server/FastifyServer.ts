@@ -37,9 +37,8 @@ export class FastifyServer {
   private readonly environment: string;
   private readonly apiVersion: string;
   private loggerFactory: ILoggerFactory = BunyanLoggerFactory.getInstance();
-  private readonly MODULE_NAME: string = "FastifyServer";
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  private logger: any = this.loggerFactory.createLogger({ name: this.MODULE_NAME });
+  private logger: any = this.loggerFactory.createLogger({ name: "FastifyServer" });
 
   constructor() {
     this.environment = process.env.APPLICATION_ENVIRONMENT ?? AppConfig.APPLICATION_ENVIRONMENT;

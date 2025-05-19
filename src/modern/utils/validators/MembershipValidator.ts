@@ -11,9 +11,7 @@ import { BunyanLoggerFactory } from "../factory/impl/BunyanLoggerFactory";
 export class MembershipValidator implements IValidator {
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    private readonly logger: any = BunyanLoggerFactory.getInstance().createLogger({
-        name: 'MembershipValidator'
-    });
+    private readonly logger: any = BunyanLoggerFactory.getInstance().createLogger({ name: 'MembershipValidator' });
 
     /**
     * @enum {string}
