@@ -11,23 +11,23 @@ import { v4 as uuidv4 } from 'uuid';
  */
 export class MembershipPeriodFactory implements IEntityFactory {
 
-    private readonly logger: any = BunyanLoggerFactory.getInstance().createLogger({
-        name: 'MembershipPeriodFactory'
-    });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    private readonly logger: any = BunyanLoggerFactory.getInstance().createLogger({ name: 'MembershipPeriodFactory' });
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     createEntity(membership: Record<string, any>): object {
         return Array.from({ length: membership.billingPeriods }, (_, index) =>
             this.createSinglePeriod(membership, index + 1)
         );
     }
 
- /**
-     * Creates a single membership period
-     * @private
-     * @param membership Membership parameters
-     * @param periodNumber Sequential period number (1-based index)
-     * @returns Generated MembershipPeriod
-     */
+    /**
+    * Creates a single membership period
+    * @param membership Membership parameters
+    * @param periodNumber Sequential period number (1-based index)
+    * @returns Generated MembershipPeriod
+    */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private createSinglePeriod( membership: Record<string, any>, periodNumber: number): MembershipPeriod {
         const periodEndDate = this.calculatePeriodEndDate(
             new Date(membership.validFrom),
@@ -44,13 +44,12 @@ export class MembershipPeriodFactory implements IEntityFactory {
         };
     }
 
-/**
-     * Calculates the end date for a period based on billing interval
-     * @private
-     * @param startDate Period start date
-     * @param interval Billing interval type
-     * @returns Calculated end date
-     */
+    /**
+    * Calculates the end date for a period based on billing interval
+    * @param startDate Period start date
+    * @param interval Billing interval type
+    * @returns Calculated end date
+    */
     private calculatePeriodEndDate(startDate: Date, interval: MembershipBillingInterval): Date {
         const endDate = new Date(startDate);
 
@@ -70,36 +69,4 @@ export class MembershipPeriodFactory implements IEntityFactory {
 
         return endDate;
     }
-}    
-
-    /*
-        createEntity(membership: Record<string, any>): object {
-            const membershipPeriods: Array<MembershipPeriod> = [];
-    
-            for(let i = 0 ; i < membership.billingPeriods ; i++) {
-                const perdiodValidUntil = new Date(membership.validFrom);
-    
-                if(membership.billingInterval === MembershipBillingInterval.MONTHLY) {
-                    perdiodValidUntil.setMonth(membership.validFrom.getMonth() + 1);
-                }
-                if(membership.billingInterval === MembershipBillingInterval.YEARLY) {
-                    perdiodValidUntil.setMonth(membership.validFrom.getMonth() + 12);
-                }            
-                if(membership.billingInterval === MembershipBillingInterval.WEEKLY) {
-                    perdiodValidUntil.setMonth(membership.validFrom.getMonth() + 7);
-                }
-    
-                const period: MembershipPeriod = {
-                    id: i + 1,
-                    uuid: uuidv4(),
-                    membership: 0,//This should be assigned in the MembershipRepository once the latest id is calculated
-                    start: membership.validFrom,
-                    end: perdiodValidUntil,
-                    state: MembershipPeriodState.PLANNED
-                } ;
-    
-                membershipPeriods.push(period);
-            }
-    
-            return membershipPeriods;
-        }*/
+}

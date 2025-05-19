@@ -10,9 +10,8 @@ import { BunyanLoggerFactory } from "../factory/impl/BunyanLoggerFactory";
  */
 export class MembershipValidator implements IValidator {
 
-    private readonly logger: any = BunyanLoggerFactory.getInstance().createLogger({
-        name: 'MembershipValidator'
-    });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    private readonly logger: any = BunyanLoggerFactory.getInstance().createLogger({ name: 'MembershipValidator' });
 
     /**
     * @enum {string}
@@ -29,11 +28,12 @@ export class MembershipValidator implements IValidator {
     };
 
     /**
-     * Validates membership data against business rules
-     * @param membership - The membership data to validate
-     * @returns true if validation passes
-     * @throws {ValidationError} If validation fails with statusCode and message
-     */
+    * Validates membership data against business rules
+    * @param membership - The membership data to validate
+    * @returns true if validation passes
+    * @throws {ValidationError} If validation fails with statusCode and message
+    */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     isValid(membership: Record<string, any>): true {
         this.validatePaymentMethod(membership);
         this.validateBillingInterval(membership);
@@ -45,6 +45,7 @@ export class MembershipValidator implements IValidator {
     *
     * @param {Record<string, any>} membership - Membership data containing payment info
     */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private validatePaymentMethod(membership: Record<string, any>): void {
         const { recurringPrice, paymentMethod } = membership;
         const { recurringPriceMinimumForCashPaymentMethod } = createMembershipLimits;
@@ -61,6 +62,7 @@ export class MembershipValidator implements IValidator {
 
     * @param {Record<string, any>} membership - Membership data containing billing info
     */    
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private validateBillingInterval(membership: Record<string, any>): void {
         const { billingInterval, billingPeriods } = membership;
 

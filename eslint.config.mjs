@@ -5,13 +5,19 @@ import { defineConfig } from "eslint/config";
 
 
 export default defineConfig([
-  { files: ["**/*.{js,mjs,cjs,ts}"], 
-    plugins: { js }, 
+  {
+    files: ["**/*.{mjs,cjs,ts}"],
+    ignores: ["**/*.js"],
+    plugins: { js },
     extends: ["js/recommended"],
     rules: {
       "no-console": ["error", { allow: ["warn", "error"] }] // Disallow console.log, allow warn/error
     }
   },
-  { files: ["**/*.{js,mjs,cjs,ts}"], languageOptions: { globals: globals.browser } },
-  tseslint.configs.recommended,
+  {
+    files: ["**/*.{mjs,cjs,ts}"],
+    ignores: ["**/*.js"],
+    languageOptions: { globals: globals.browser }
+  },
+  tseslint.configs.recommended
 ]);

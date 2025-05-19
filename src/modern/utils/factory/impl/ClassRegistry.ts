@@ -12,13 +12,13 @@ import { MembershipPeriodFactory } from './MembershipPeriodFactory';
  */
 export class ClassRegistry {
 
-    private static factoryRegistry = new Map<string, new (...args: any[]) => any>();
+    private static factoryRegistry = new Map<string, new (...args: unknown[]) => unknown>();
 
-    static register<T>(name: string, ctor: new (...args: any[]) => T) {
+    static register<T>(name: string, ctor: new (...args: unknown[]) => T) {
         this.factoryRegistry.set(name, ctor);
     }
 
-    static create<T>(name: string, ...args: any[]): T {
+    static create<T>(name: string, ...args: unknown[]): T {
         const ctor = this.factoryRegistry.get(name);
         if (!ctor) {
             throw new Error(`Class ${name} not registered`);

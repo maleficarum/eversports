@@ -26,6 +26,7 @@ export default class HealthController {
     private startupDateInMillisecs = new Date().getTime();
 
     @GET({ url: '/' })
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async health(request: FastifyRequest, response: FastifyReply) {
         return {
             "health": {
