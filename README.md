@@ -50,18 +50,18 @@ According the **separation of concerns** principle, the project has the next str
             └── 📂 rules
 ```
 
-* src/legacy : The legacy codebase
-* src/config : The base parameters for the application.
-* src/modern : The new version
-* src/modern/controller : The REST controllers with the proper routes.
-* src/modern/model: The DB model for each entity (Membership, MembershipPeriod)
-* src/modern/model/schemas/db/mongo/ : This contains the specific Models for mongo, which defines the requirements and restrictions.
-* src/modern/model/schemas/db/request/ : This contains the specific schemas to be validated by the API server, and defines the specific and expected payload in the request.
-* src/modern/repository : The repositories to interact with the data source. Has the proper methods to create or list entities.
-* src/modern/server : This holds the specific server to expose the API's. The initial version implements Fastify, but may be changed to NextJS or express.js if needed.
-* src/modern/services : The services definition, which holds the binding between Controllers and Repositories.
-* src/modern/utils/factory : The factories classes to create entities as needed in a singleton fashion.
-* src/modern/utils/validators : The business rules validators.
+* **src/legacy** : The legacy codebase
+* **src/config** : The base parameters for the application.
+* **src/modern** : The new version
+* **src/modern/controller** : The REST controllers with the proper routes.
+* **src/modern/model** : The DB model for each entity (Membership, MembershipPeriod)
+* **src/modern/model/schemas/db/mongo/** : This contains the specific Models for mongo, which defines the requirements and restrictions.
+* **src/modern/model/schemas/db/request/** : This contains the specific schemas to be validated by the API server, and defines the specific and expected payload in the request.
+* **src/modern/repository** : The repositories to interact with the data source. Has the proper methods to create or list entities.
+* **src/modern/server** : This holds the specific server to expose the API's. The initial version implements Fastify, but may be changed to NextJS or express.js if needed.
+* **src/modern/services** : The services definition, which holds the binding between Controllers and Repositories.
+* **src/modern/utils/factory** : The factories classes to create entities as needed in a singleton fashion.
+* **src/modern/utils/validators** : The business rules validators.
 
 ## 🛠️ Tech Stack
 
@@ -136,7 +136,7 @@ This mode listen for changes and performs a restart to apply the changes.
 $ npm run dev
 ```
 
-b) ***No-compiled startup***
+b) ***Non-compiled startup***
 
 This mode starts the server with no compilation neede, and no 'listening for changes' mode.
 
@@ -181,7 +181,7 @@ The stack is located in the 'stack' 📂 directory organized as follows :
 > You don't have to edit or modify the artifacts under "modules" 📂 directory. That directory is only for your reference.
 
 > [!IMPORTANT]
-> For this stage, only de ***development*** environment is configured, but if it is neede, you can add more environments at the same level of the ***development*** 📂 directory.
+> For this stage, only de ***development*** environment is configured, but if it is needed, you can add more environments at the same level of the ***development*** 📂 directory.
 
 > [!IMPORTANT]
 > You need to configure the proper keys to access to your AWS account [see documentation](https://docs.aws.amazon.com/cli/v1/userguide/cli-configure-files.html).
@@ -198,6 +198,13 @@ locals {
     terraform_module_version = "v0.0.6"
 }
 ```
+
+> [!IMPORTANT]
+> Each module has it's own published artifact. To get informed about the current version :
+> [Fargate Module](https://github.com/maleficarum/terraform-aws-container/releases)
+> [API Gateway Module](https://github.com/maleficarum/terraform-aws-api-gateway/releases)
+> [Network Module](https://github.com/maleficarum/terraform-aws-network/releases)
+
 
 You can (or not) adjust this values.
 
@@ -220,7 +227,7 @@ Group 2
 Are you sure you want to run 'terragrunt apply' in each folder of the stack described above? (y/n)
 ```
 
-type **yes** and the plan task will be performed. Once the plan is done, you will get a brief of all task to do. If there is no error, you can apply all the stack.
+type **yes** and the plan task will be performed. Once the plan is done, you will get a brief of all task terraform will perform. If there is no error, you can apply all the stack.
 
 ```bash
 $ terragrunt run-all apply
@@ -237,7 +244,7 @@ Group 2
 Are you sure you want to run 'terragrunt apply' in each folder of the stack described above? (y/n)
 ```
 
-type **yes** and the apply task will be performed. Once the papplylan is done, you will get a brief of all task to do. If there is no error, you can apply all the stack:
+type **yes** and the apply task will be performed. Once the apply is done, you will get a brief of all task to be done on AWS.
 
 ```bash
 ...
@@ -274,7 +281,8 @@ type **yes** and the apply task will be performed. Once the papplylan is done, y
 The most relevan part after the apply command are the outputs. If you missed the outputs output, you can perform :
 
 ```bash
-nd output:
+$ terragrunt run-all output
+
 Group 1
 - Module ./network
 
@@ -307,7 +315,7 @@ vpc = "vpc-0ee894ce01305b7fb"
 api_gateway_fqdn = "dgf7mxlcx1.execute-api.mx-central-1.amazonaws.com"
 ```
 
-After the creation of the resources, you can get the final API Gateway and Public Load Balancer FQDN.
+After the creation of the resources the outputs will be available at any momento; you can get the final API Gateway and Public Load Balancer FQDN.
 
 
 ## 🧪 Testing
@@ -353,7 +361,7 @@ Ran all test suites.
 ## Test the deployed environment
 
 
-search at the terraform outputs for the **public_alb_dns_name** value; that value is the public FQDN for the application entry point; with this value, you can query the **/health** end point : 
+Search at the terraform outputs for the **public_alb_dns_name** value; that value is the public FQDN for the application entry point; with this value, you can query the **/health** end point : 
 
 ![Public /health endpoint](./readme_resources/picture1.png)
 
@@ -372,3 +380,5 @@ To test the API endpoints in an easy fashion, the server will publish a swagger 
 >  If you have configured your application as a development environment ***(APPLICATION_ENVIRONMENT: "development")*** the server will publish a swagger instance.
 
 ![Public /swagger endpoint](./readme_resources/picture3.png)
+
+## Happy testing :octocat:
