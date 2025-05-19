@@ -2,7 +2,6 @@ import { Membership } from "../model/Membership";
 import { MembershipPeriod } from "../model/MembershipPeriod";
 import { IMembershipRepository } from "./interfaces/IMembershipRepository";
 import mongoose, { Mongoose } from 'mongoose';
-import { logger } from '../utils/logger';
 import { MembershipSchema } from "../model/schemas/db/mongo/MembershipSchema";
 import { MembershipPeriodSchema } from "../model/schemas/db/mongo/MembershipPeriodSchema";
 import { BunyanLoggerFactory } from "../utils/factory/impl/BunyanLoggerFactory";
@@ -27,6 +26,8 @@ export class MembershipRepository implements IMembershipRepository {
         useUnifiedTopology: true,
         w: "majority" as const
     };
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private logger: any = BunyanLoggerFactory.getInstance().createLogger({
         name: this.MODULE_NAME
     });
@@ -66,7 +67,7 @@ export class MembershipRepository implements IMembershipRepository {
 
             // Create membership
             const createdMembership = await MembershipSchema.create(membership);
-            this.logger.debug("Created new membership", { membershipId: membership.id });
+            this.logger.debug("Created new membership", { membershipId: nextId, createdMembership });
 
             // Create associated periods
             const periodCreationPromises = membershipPeriods.map(period => {

@@ -32,6 +32,7 @@ export default class MembershipRoutes {
     private membershipService: MembershipService =  new MembershipService();
     private membershipFactory: IEntityFactory;
     private membershipPeriodFactory: IEntityFactory;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private logger: any = BunyanLoggerFactory.getInstance().createLogger({  name: this.MODULE_NAME });
 
 
@@ -45,6 +46,7 @@ export default class MembershipRoutes {
     * @returns Promise containing all memberships
     */
     @GET({ url: '/' })
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async getAllMemberships(request: FastifyRequest, reply: FastifyReply) {
         this.logger.trace("Fetching all memberships");
         return this.membershipService.getAllMemberships();
@@ -65,6 +67,7 @@ export default class MembershipRoutes {
             }
         }
     })
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async createMembership(request: FastifyRequest<{ Body: Static<typeof membershipRequestSchema> }>, reply: FastifyReply) {
         const membership = this.membershipFactory.createEntity(request.body);
         const membershipPeriods = await this.membershipPeriodFactory.createEntity(membership);        

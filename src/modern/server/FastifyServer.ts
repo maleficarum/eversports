@@ -9,7 +9,7 @@ import fastifySwaggerUi from '@fastify/swagger-ui';
 import cors from '@fastify/cors';
 import ajvErrors from 'ajv-errors';
 import ajvFormats from 'ajv-formats';
-import { BunyanLoggerFactory , BunyanLoggerLevel } from '../utils/factory/impl/BunyanLoggerFactory';
+import { BunyanLoggerFactory } from '../utils/factory/impl/BunyanLoggerFactory';
 import { ILoggerFactory } from '../utils/factory/ILoggerFactory';
 
 dotenv.config();
@@ -37,8 +37,8 @@ export class FastifyServer {
   private readonly environment: string;
   private readonly apiVersion: string;
   private loggerFactory: ILoggerFactory = BunyanLoggerFactory.getInstance();
-  private readonly MODULE_NAME: string = "FastifyServer";
-  private logger: any = this.loggerFactory.createLogger({ name: this.MODULE_NAME });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  private logger: any = this.loggerFactory.createLogger({ name: "FastifyServer" });
 
   constructor() {
     this.environment = process.env.APPLICATION_ENVIRONMENT ?? AppConfig.APPLICATION_ENVIRONMENT;
