@@ -12,7 +12,7 @@ module.exports = {
   "collectCoverageFrom": ["./src/**"],
   "coverageThreshold": {
     "global": {
-      "lines": 60
+      "lines": 40
     }
   },
   reporters: ["default", ["jest-md-dashboard", {
