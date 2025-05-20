@@ -46,6 +46,10 @@ jobs:
               run: npm run test && cat ./test/results.md >> $GITHUB_STEP_SUMMARY
               shell: bash
 
+            - name: 'Run sonarqube'
+              run: ./bin/sonar-scanner   -Dsonar.projectKey=eversports   -Dsonar.sources=./src/modern   -Dsonar.host.url=${{ env.SONARQUBE_URL }}   -Dsonar.token=${{ secrets.SONARQUBE_TOKEN }}
+              shell: bash
+
             - name: 'Build application'
               run: npm run build
               shell: bash              
