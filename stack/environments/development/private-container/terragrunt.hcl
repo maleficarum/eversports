@@ -14,8 +14,8 @@ locals {
 }
 
 terraform {
-  //source = "https://github.com/maleficarum/terraform-aws-container?ref=${include.env.locals.terraform_module_version}"
-  source = "../../../modules//terraform-aws-container"
+  source = "https://github.com/maleficarum/terraform-aws-container?ref=${include.env.locals.terraform_module_version}"
+  //source = "../../../modules//terraform-aws-container"
 
   include_in_copy = ["variables.tfvars"]
 
