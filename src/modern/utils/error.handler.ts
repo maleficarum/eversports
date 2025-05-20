@@ -1,5 +1,4 @@
 import { FastifyRequest, FastifyReply } from "fastify";
-import { read } from "fs";
 
 /**
  * Extended Error interface for HTTP error handling
