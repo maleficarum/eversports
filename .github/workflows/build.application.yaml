@@ -11,7 +11,7 @@ on:
 
 jobs:
     plan:
-        name: 'Review, Prepare and Deploy'
+        name: 'Review, Prepare and Build'
         runs-on: 'self-hosted'
         environment: ${{ github.ref_name == 'main' && 'development' || github.event.pull_request.base.ref }}
     
@@ -22,7 +22,7 @@ jobs:
                 fetch-depth: 0         
 
             - name: Echo environment
-              run: echo "Using environment [ ${environment} ]"
+              run: echo "Using environment [ ${environment} ] ${{ secrets.SONARQUBE_HOST }}"
               shell: bash
 
             - name: 'Clean environment'
@@ -44,6 +44,10 @@ jobs:
 
             - name: 'Run tests'
               run: npm run test && cat ./test/results.md >> $GITHUB_STEP_SUMMARY
+              shell: bash
+
+            - name: 'Run sonarqube'
+              run: sonar-scanner   -Dsonar.projectKey=eversports   -Dsonar.sources=./src/modern   -Dsonar.host.url=${{ secrets.SONARQUBE_HOST }}   -Dsonar.token=${{ secrets.SONARQUBE_TOKEN }}
               shell: bash
 
             - name: 'Build application'
