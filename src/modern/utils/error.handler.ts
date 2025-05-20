@@ -56,3 +56,9 @@ export const membershipErrorHandler = (error: HttpErrorHandler, request: Fastify
   })
   });
 };
+
+export const ErrorCodes = { 
+  ERROR_UNABLE_TO_CREATE_MEMBERSHIP : "unableToCreateMembership",
+  ERROR_UNABLE_TO_GET_ALL_MEMBERSHIPS : "unableToGetAllMemberships",
+  ERROR_UNABLE_TO_CONNECT_TO_DATABASE: "unableToConnectToDatabase"
+}

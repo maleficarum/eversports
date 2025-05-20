@@ -23,7 +23,7 @@ import { Controller, ControllerType, GET } from "fastify-decorators";
 })
 export default class HealthController {
 
-    private startupDateInMillisecs = new Date().getTime();
+    private readonly startupDateInMillisecs = new Date().getTime();
 
     @GET({ url: '/' })
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

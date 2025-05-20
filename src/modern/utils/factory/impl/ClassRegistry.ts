@@ -12,7 +12,7 @@ import { MembershipPeriodFactory } from './MembershipPeriodFactory';
  */
 export class ClassRegistry {
 
-    private static factoryRegistry = new Map<string, new (...args: unknown[]) => unknown>();
+    private static readonly factoryRegistry = new Map<string, new (...args: unknown[]) => unknown>();
 
     static register<T>(name: string, ctor: new (...args: unknown[]) => T) {
         this.factoryRegistry.set(name, ctor);
