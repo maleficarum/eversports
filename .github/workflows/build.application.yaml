@@ -11,7 +11,7 @@ on:
 
 jobs:
     plan:
-        name: 'Review, Prepare and Deploy'
+        name: 'Review, Prepare and Build'
         runs-on: 'self-hosted'
         environment: ${{ github.ref_name == 'main' && 'development' || github.event.pull_request.base.ref }}
     
@@ -47,7 +47,7 @@ jobs:
               shell: bash
 
             - name: 'Run sonarqube'
-              run: ./bin/sonar-scanner   -Dsonar.projectKey=eversports   -Dsonar.sources=./src/modern   -Dsonar.host.url=${{ env.SONARQUBE_URL }}   -Dsonar.token=${{ secrets.SONARQUBE_TOKEN }}
+              run: sonar-scanner   -Dsonar.projectKey=eversports   -Dsonar.sources=./src/modern   -Dsonar.host.url=${{ env.SONARQUBE_URL }}   -Dsonar.token=${{ secrets.SONARQUBE_TOKEN }}
               shell: bash
 
             - name: 'Build application'
