@@ -22,7 +22,7 @@ jobs:
                 fetch-depth: 0         
 
             - name: Echo environment
-              run: echo "Using environment [ ${environment} ] ${{ secrets.SONARQUBE_HOST }}"
+              run: echo "Using environment [ ${environment} ]"
               shell: bash
 
             - name: 'Clean environment'
