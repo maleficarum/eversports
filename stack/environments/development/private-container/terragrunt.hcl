@@ -14,8 +14,8 @@ locals {
 }
 
 terraform {
-  source = "https://github.com/maleficarum/terraform-aws-container?ref=${include.env.locals.terraform_module_version}"
-  //source = "../../../modules//terraform-aws-container"
+  //source = "https://github.com/maleficarum/terraform-aws-container?ref=${include.env.locals.terraform_module_version}"
+  source = "../../../modules//terraform-aws-container"
 
   include_in_copy = ["variables.tfvars"]
 
@@ -40,6 +40,7 @@ inputs = {
   target_subnets = dependency.network.outputs.private_subnets
   ecs_tasks = dependency.network.outputs.ecs_tasks
   target_group_arn = dependency.network.outputs.target_group_arn
+  region = include.env.locals.region
 }
 /*
 remote_state {
