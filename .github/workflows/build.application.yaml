@@ -47,7 +47,7 @@ jobs:
               shell: bash
 
             - name: 'Run sonarqube'
-              run: sonar-scanner   -Dsonar.projectKey=eversports   -Dsonar.sources=./src/modern   -Dsonar.host.url=${{ secrets.SONARQUBE_HOST }}   -Dsonar.token=${{ secrets.SONARQUBE_TOKEN }} -Dsonar.javascript.lcov.reportPaths=./coverage/jest/lcov.info
+              run: sonar-scanner   -Dsonar.projectKey=eversports   -Dsonar.sources=./src/modern   -Dsonar.host.url=${{ secrets.SONARQUBE_HOST }}   -Dsonar.token=${{ secrets.SONARQUBE_TOKEN }} -Dsonar.javascript.lcov.reportPaths=./src/testCoverage/lcov.info
               shell: bash
 
             - name: 'Build application'
