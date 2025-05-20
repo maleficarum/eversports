@@ -36,9 +36,9 @@ export class FastifyServer {
   private readonly host: string;
   private readonly environment: string;
   private readonly apiVersion: string;
-  private loggerFactory: ILoggerFactory = BunyanLoggerFactory.getInstance();
+  private readonly loggerFactory: ILoggerFactory = BunyanLoggerFactory.getInstance();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  private logger: any = this.loggerFactory.createLogger({ name: "FastifyServer" });
+  private readonly logger: any = this.loggerFactory.createLogger({ name: "FastifyServer" });
 
   constructor() {
     this.environment = process.env.APPLICATION_ENVIRONMENT ?? AppConfig.APPLICATION_ENVIRONMENT;
@@ -72,7 +72,6 @@ export class FastifyServer {
   //TODO: Figure out how to handle Swagger enablement due jest not works with Swagger
   private shouldEnableSwagger(): boolean {
     return !(this.environment == 'production' || this.environment == 'test');
-    //return false;
   }
 
   private async configureSwagger(): Promise<void> {

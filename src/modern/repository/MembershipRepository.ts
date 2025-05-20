@@ -5,6 +5,7 @@ import mongoose, { Mongoose } from 'mongoose';
 import { MembershipSchema } from "../model/schemas/db/mongo/MembershipSchema";
 import { MembershipPeriodSchema } from "../model/schemas/db/mongo/MembershipPeriodSchema";
 import { BunyanLoggerFactory } from "../utils/factory/impl/BunyanLoggerFactory";
+import { ErrorCodes } from "../utils/error.handler";
 
 
 /**
@@ -19,7 +20,7 @@ export class MembershipRepository implements IMembershipRepository {
 
     private MONGO_DB_URI: string;
     private connection!: Mongoose;
-    private connectionOptions = {}
+    private readonly connectionOptions = {}
     /*private connectionOptions = { 
         serverApi: { 
             version: "1" as const, strict: true, deprecationErrors: true 
@@ -27,12 +28,12 @@ export class MembershipRepository implements IMembershipRepository {
     };*/
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    private logger: any = BunyanLoggerFactory.getInstance().createLogger({ name: 'MembershipRepository' });
+    private readonly logger: any = BunyanLoggerFactory.getInstance().createLogger({ name: 'MembershipRepository' });
 
     constructor() {
         this.MONGO_DB_URI = process.env.MONGO_CONNECTION_STRING || '';
         if (!this.MONGO_DB_URI) {
-            throw new Error('MongoDB connection string is not configured');
+            throw { statusCode: 500, message: ErrorCodes.ERROR_UNABLE_TO_CONNECT_TO_DATABASE };
         }
     }
 
@@ -42,7 +43,7 @@ export class MembershipRepository implements IMembershipRepository {
             this.logger.info(`Connected to MongoDB server version ${this.connection.version}`);
         } catch (error) {
             this.logger.error('Failed to connect to MongoDB', error);
-            throw error;
+            throw { statusCode: 500, message: 'unableToConnectToDatabase' };
         }
     }
 
@@ -78,9 +79,7 @@ export class MembershipRepository implements IMembershipRepository {
         } catch (error) {
             //await session.abortTransaction();
             this.logger.error("Failed to create membership", { error, membershipId: membership.id });
-            throw error;
-        } finally {
-            //session.endSession();
+            throw { statusCode: 500, message: ErrorCodes.ERROR_UNABLE_TO_CREATE_MEMBERSHIP };
         }
 
     }
@@ -105,7 +104,7 @@ export class MembershipRepository implements IMembershipRepository {
             }));
         } catch (error) {
             this.logger.error("Failed to retrieve memberships", error);
-            throw error;
+            throw { statusCode: 500, message: ErrorCodes.ERROR_UNABLE_TO_GET_ALL_MEMBERSHIPS };
         }
     }
 

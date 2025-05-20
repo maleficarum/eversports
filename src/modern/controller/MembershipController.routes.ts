@@ -19,6 +19,7 @@ import { MembershipFactory } from "../utils/factory/impl/MembershipFactory";
 import { BunyanLoggerFactory } from "../utils/factory/impl/BunyanLoggerFactory";
 import { Membership } from "../model/Membership";
 import { MembershipPeriod } from "../model/MembershipPeriod";
+import { ErrorCodes } from "../utils/error.handler";
 
 const ROUTE_PREFIX = '/memberships';
 
@@ -32,7 +33,7 @@ export default class MembershipRoutes {
     membershipFactory: IEntityFactory;
     membershipPeriodFactory: IEntityFactory;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    private logger: any = BunyanLoggerFactory.getInstance().createLogger({  name: 'MembershipRoutes' });
+    private readonly logger: any = BunyanLoggerFactory.getInstance().createLogger({  name: 'MembershipRoutes' });
 
 
     constructor() {
@@ -74,7 +75,7 @@ export default class MembershipRoutes {
 
         if(!createdMembership) {
             this.logger.error("Unable to create a memebrship");
-            throw { statusCode: 500, message: 'unableToCreateMembership' };
+            throw { statusCode: 500, message: ErrorCodes.ERROR_UNABLE_TO_CREATE_MEMBERSHIP };
         }
 
         return { membership: createdMembership, membershipPeriods: membershipPeriods};        
