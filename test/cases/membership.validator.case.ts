@@ -16,7 +16,7 @@ export const membershipCreationValidatorTestCase = () => {
     afterAll(async () => { });
 
     it('should validate recurring price gt 100 for cash mayment method', () => {
-      const membership = loadTestJson(__dirname, 'cashPriceBelow100.payload.json');
+      const membership = loadTestJson(__dirname, 'cashPriceBelow100.json');
 
       try {
         membershipValidator.isValid(membership);

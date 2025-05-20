@@ -28,12 +28,11 @@ const ROUTE_PREFIX = '/memberships';
 })
 export default class MembershipRoutes {
 
-    private readonly MODULE_NAME = 'MembershipRoutes';
-    private membershipService: MembershipService =  new MembershipService();
-    private membershipFactory: IEntityFactory;
-    private membershipPeriodFactory: IEntityFactory;
+    membershipService: MembershipService =  new MembershipService();
+    membershipFactory: IEntityFactory;
+    membershipPeriodFactory: IEntityFactory;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    private logger: any = BunyanLoggerFactory.getInstance().createLogger({  name: this.MODULE_NAME });
+    private logger: any = BunyanLoggerFactory.getInstance().createLogger({  name: 'MembershipRoutes' });
 
 
     constructor() {
