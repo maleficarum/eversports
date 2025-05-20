@@ -19,8 +19,6 @@ Modern membership management API refactored from legacy Express.js to FastAPI/Ty
 ### Modern Architecture
 - 🧹 Clean code refactor from legacy Express.js
 - 🏗️ Separation of concerns
-- 🧪 85%+ test coverage
-- 🔒 Secure by design
 
 ## 🏗️ Project Structure
 
@@ -380,4 +378,35 @@ To test the API endpoints in an easy fashion, the server will publish a swagger 
 
 ![Public /swagger endpoint](./readme_resources/picture3.png)
 
-## Happy testing :octocat:
+## :octocat: Github Actions
+
+The project has two pipilines triggered by : 
+
+- Initiated a PR (`build.application.yaml`).
+
+This pipeline executes the next steps:
+
+* Git leaks analysis : Looking for hardcoded or exposed tokens, passwords and keys in the repository.
+* NPM Preparation : Install dependencies.
+* Linter process : Lint analysis
+* Test executions : Execution of the jest defined test cases.
+* SonarQube : Static analysis using sonarqube.
+* Build application : Compile the application. 
+* Build docker image : Build, tag and push the image containing the compiled application. 
+* Docker image analysis : Docker image analysis for vulnerabilities.
+
+After all the pipeline, a summary will be generated : 
+
+![Git leaks and test cases ](./readme_resources/picture4.png)
+![Test case detail ](./readme_resources/picture5.png)
+![Docker image analysis results ](./readme_resources/picture6.png)
+![Docker image build results ](./readme_resources/picture7.png)
+![Sonarqube analysis ](./readme_resources/picture8.png)
+
+- Push confirmed to a branch after PR approval (`deploy.aws.stack.yaml`)
+
+This pipeline executes the next steps : 
+
+* Git leaks analysis : Looking for hardcoded or exposed tokens, passwords and keys in the repository.
+* Terraform plan : Dry run of the apply process.
+* Terraform apply : The real infrastructure creation process
