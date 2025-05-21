@@ -6,8 +6,17 @@ module.exports = {
   testEnvironment: 'node',
   testMatch: ['**/*.test.ts'],
   setupFilesAfterEnv: ["jest-extended/all"],    // To add extensions to jest such as toBeOneOf()
-  reporters: ["default", ["jest-md-dashboard", { 
-    title: "Eversports test cases results" ,
+  collectCoverage: true,
+  coverageDirectory: 'src/testCoverage',
+  coverageReporters: ["lcov", "text", "cobertura"],
+  "collectCoverageFrom": ["./src/**"],
+  "coverageThreshold": {
+    "global": {
+      "lines": 40
+    }
+  },
+  reporters: ["default", ["jest-md-dashboard", {
+    title: "Eversports test cases results",
     outputPath: "./test/results.md"
   }]],
   //setupFilesAfterEnv: ['./test/setup.ts'],
